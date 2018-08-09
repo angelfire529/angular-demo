@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CampaignDataService } from '../campaign-data.service';
+import { CampaignDataService } from '../services/campaign-data.service';
 
 @Component({
   selector: 'app-home',

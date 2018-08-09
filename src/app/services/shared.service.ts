@@ -1,7 +1,7 @@
-import { Injectable } from "../../node_modules/@angular/core";
-import { CampaignCreatives } from "./models/campaign-creatives";
-import { Campaign } from "./models/campaign.class";
-import { Creative } from "./models/creative";
+import { Injectable } from "@angular/core";
+import { CampaignCreatives } from "../models/campaign-creatives";
+import { Campaign } from "../models/campaign.class";
+import { Creative } from "../models/creative";
 
 @Injectable({
     providedIn: 'root'

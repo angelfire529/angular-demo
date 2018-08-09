@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CampaignDataService } from '../campaign-data.service';
+import { CampaignDataService } from '../services/campaign-data.service';
 import { Creative } from '../models/creative';
-import { ActivatedRoute, Router } from '../../../node_modules/@angular/router';
-import { map, tap } from '../../../node_modules/rxjs/operators';
-import { FormGroup, FormControl } from '../../../node_modules/@angular/forms';
-import { SharedService } from '../shared.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, tap } from 'rxjs/operators';
+import { FormGroup, FormControl } from '@angular/forms';
+import { SharedService } from '../services/shared.service';
 
 
 @Component({

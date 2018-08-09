@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { CampaignDataService } from '../campaign-data.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { CampaignDataService } from '../services/campaign-data.service';
 import { Campaign } from '../models/campaign.class';
 import { Creative } from '../models/creative';
-import { Router } from '../../../node_modules/@angular/router';
-import { SharedService } from '../shared.service';
+import { SharedService } from '../services/shared.service';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -12,44 +13,48 @@ import { SharedService } from '../shared.service';
 })
 export class DashboardComponent implements OnInit {
   campaigns: Campaign[];
+  filteredCampaigns: Campaign[];
   creatives: Creative[];
+  private pageSize = 10;
+  private currentPage = 0;
+  @Input() length: number;
 
-
-  constructor(private campaignDataService: CampaignDataService, private sharedService: SharedService, private router: Router) {}
+  constructor(private campaignDataService: CampaignDataService, private sharedService: SharedService) { }
 
   ngOnInit() {
     if (this.sharedService.data.campaigns.length === 0 && this.sharedService.data.creatives.length === 0) {
       this.campaignDataService.getCampaignsAndCreatives().then(
         data => {
           this.campaigns = data.campaigns;
+          this.filteredCampaigns = this.getPagedItems(10, 0);
           this.creatives = data.creatives;
+          this.length = this.campaigns.length;
           this.sharedService.updateData(this.campaigns, this.creatives);
         }
       );
-     } else {
-       this.campaigns = this.sharedService.data.campaigns;
-       this.creatives = this.sharedService.data.creatives;
-     }
-  }
-
-  goToCreative = (id) => {
-    this.router.navigate(['/creative', id]);
-  }
-
-  getMidPointStyle = (index) => {
-    if (index === Math.floor(this.campaigns.length / 2) && this.campaigns.length % 2 !== 0) {
-      return {'margin-bottom': '100px'};
-    } else if (index === Math.floor(this.campaigns.length / 2) + 1 && this.campaigns.length % 2 !== 0) {
-      return {'margin-top': '100px'};
+    } else {
+      this.campaigns = this.sharedService.data.campaigns;
+      this.filteredCampaigns = this.campaigns;
+      this.creatives = this.sharedService.data.creatives;
+      this.length = this.campaigns.length;
     }
-    return {'margin-top': '0', 'margin-bottom': '1rem'};
   }
 
-  removeCampaign = (e, id) => {
-    e.preventDefault();
-    this.campaignDataService.deleteCampaignById(id).subscribe(campaigns => {
-      this.campaigns = campaigns;
-      this.sharedService.updateCampaigns(campaigns);
-    });
+  onRemoved(e) {
+    this.length = e.campaigns.length;
+    this.campaigns = e.campaigns;
+    this.filteredCampaigns = this.getPagedItems(this.pageSize, this.currentPage);
+  }
+
+  handlePageEvent(e) {
+    this.pageSize = e.pageSize;
+    this.currentPage = e.pageIndex;
+    this.filteredCampaigns = this.getPagedItems(e.pageSize, e.pageIndex);
+  }
+
+  getPagedItems(pageSize: number, current: number): Campaign[] {
+    const next = pageSize * (current + 1) > this.campaigns.length - 1 ? this.campaigns.length - 1 : pageSize * (current + 1);
+    const items = _.slice(this.campaigns, pageSize * current, next + 1);
+    return items;
   }
 }

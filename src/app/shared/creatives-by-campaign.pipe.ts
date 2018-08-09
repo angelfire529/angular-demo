@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Creative } from '../models/creative';
-import { Observable, from, of } from '../../../node_modules/rxjs';
+import { Observable, from, of } from 'rxjs';
 
 @Pipe({
   name: 'creativesByCampaign'

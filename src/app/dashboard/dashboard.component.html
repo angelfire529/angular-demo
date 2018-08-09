@@ -2,26 +2,20 @@
   <div class="col-xs-12">
     <div class="accordion-container">
       <mat-accordion>
-          <mat-expansion-panel *ngFor="let campaign of campaigns; let i = index" [ngStyle]="getMidPointStyle(i)">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <div class="panel-title">
-                      <div class="panel-title-content">Name:  {{campaign.name}} </div><span class="panel-title-content-span" (click)="removeCampaign($event, campaign.id)"><i class="fa fa-remove"></i></span>
-                      <p class="panel-title-content-sub">Advertiser: {{campaign.advertiser}}, CPM: {{campaign.cpm}}, End: {{campaign.endDate}}, Start: {{campaign.startDate}}</p>
-                    </div>
-                  
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <mat-list>
-                <div style="height: 500px; overflow: auto">
-                  <mat-list-item *ngFor="let creative of creatives  | creativesByCampaign:campaign.id " (click)="goToCreative(creative.id)">
-                    {{creative.name}}
-                    <mat-divider></mat-divider>
-                  </mat-list-item>
-                </div>
-              </mat-list>
-            </mat-expansion-panel>
+          <div class="">
+            <h4>Campaigns by Name</h4>
+              <app-campaign [filteredArray]="filteredCampaigns" [creatives]="creatives"  (removed)="onRemoved($event)"></app-campaign>
+                
+          </div>
       </mat-accordion>
+      
+      </div>
+      <div>
+          <mat-paginator [length]="length"
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          (page) = "handlePageEvent($event)">
+        </mat-paginator>
     </div>
   </div>
 </div>

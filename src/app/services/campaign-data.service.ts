@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Campaign } from './models/campaign.class';
-import { Observable, from, of } from '../../node_modules/rxjs';
-import { Creative } from './models/creative';
-import { CampaignCreatives } from './models/campaign-creatives';
-import { map } from '../../node_modules/rxjs/operators';
+import { Campaign } from '../models/campaign.class';
+import { Observable, of } from 'rxjs';
+import { Creative } from '../models/creative';
+import { CampaignCreatives } from '../models/campaign-creatives';
 import { SharedService } from './shared.service';
 
 @Injectable({
