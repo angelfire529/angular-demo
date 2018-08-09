@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Creative } from './models/creative';
+import { Campaign } from './models/campaign.class';
 
 @Component({
   selector: 'app-root',
