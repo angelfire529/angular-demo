@@ -4,6 +4,12 @@
     margin-bottom: 30px;
   }
 
+  .mat-list-item {
+      &:hover {
+          cursor: pointer;
+      }
+  }
+
   .panel-title {
     display: inline-block;
     width: 100%;
