@@ -22,14 +22,15 @@ export class DashboardComponent implements OnInit {
   constructor(private campaignDataService: CampaignDataService, private sharedService: SharedService) { }
 
   ngOnInit() {
-    if (this.sharedService.data.campaigns.length === 0 && this.sharedService.data.creatives.length === 0) {
+    if (!this.sharedService.data) {
       this.campaignDataService.getCampaignsAndCreatives().then(
         data => {
           this.campaigns = data.campaigns;
           this.filteredCampaigns = this.getPagedItems(this.pageSize, this.currentPage);
           this.creatives = data.creatives;
           this.length = this.campaigns.length;
-          this.sharedService.updateData(this.campaigns, this.creatives);
+          this.sharedService.updateCampaigns(data.campaigns);
+          this.sharedService.updateCreatives(data.creatives);
         }
       );
     } else {
