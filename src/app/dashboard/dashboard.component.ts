@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
       this.campaignDataService.getCampaignsAndCreatives().then(
         data => {
           this.campaigns = data.campaigns;
-          this.filteredCampaigns = this.getPagedItems(10, 0);
+          this.filteredCampaigns = this.getPagedItems(this.pageSize, this.currentPage);
           this.creatives = data.creatives;
           this.length = this.campaigns.length;
           this.sharedService.updateData(this.campaigns, this.creatives);
@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
       );
     } else {
       this.campaigns = this.sharedService.data.campaigns;
-      this.filteredCampaigns = this.campaigns;
+      this.filteredCampaigns = this.getPagedItems(this.pageSize, this.currentPage);
       this.creatives = this.sharedService.data.creatives;
       this.length = this.campaigns.length;
     }
