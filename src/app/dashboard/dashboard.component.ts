@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   constructor(private campaignDataService: CampaignDataService, private sharedService: SharedService) { }
 
   ngOnInit() {
-    if (!this.sharedService.data) {
+    if (!this.sharedService.initialized) {
       this.campaignDataService.getCampaignsAndCreatives().then(
         data => {
           this.campaigns = data.campaigns;
@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
           this.length = this.campaigns.length;
           this.sharedService.updateCampaigns(data.campaigns);
           this.sharedService.updateCreatives(data.creatives);
+          this.sharedService.initialized = true;
         }
       );
     } else {

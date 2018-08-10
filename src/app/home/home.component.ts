@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CampaignDataService } from '../services/campaign-data.service';
+import { SharedService } from '../services/shared.service';
+import { CampaignCreatives } from '../models/campaign-creatives';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,10 @@ import { CampaignDataService } from '../services/campaign-data.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private campaingDataService: CampaignDataService) { }
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
+    this.sharedService.data = new CampaignCreatives([], []);
+    this.sharedService.initialized = false;
   }
-
 }

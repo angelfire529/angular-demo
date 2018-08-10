@@ -7,17 +7,23 @@ import { Creative } from "../models/creative";
     providedIn: 'root'
 })
 export class SharedService {
-    private _data: CampaignCreatives;
+    private _data: CampaignCreatives = new CampaignCreatives([], []);
+    private _initialized = false;
 
     get data(): CampaignCreatives {
         return this._data;
     }
 
     set data(src: CampaignCreatives) {
-        if (!this._data) {
-            this._data = new CampaignCreatives(src.campaigns, src.creatives);
-        }
         this._data = src;
+    }
+
+    get initialized() {
+        return this._initialized;
+    }
+
+    set initialized(src) {
+        this._initialized = src;
     }
 
     updateCreatives(creatives: Creative[]) {
