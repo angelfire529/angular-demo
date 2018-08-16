@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-xs-12 fluid">
+    <div class="accordion-container">
+      <mat-accordion>
+          <div class="">
+            <h4 class="campaign-heading">Campaigns by Name</h4>
+              <app-campaign [filteredArray]="filteredCampaigns" [creatives]="creatives"  (removed)="onRemoved($event)"></app-campaign>
+                
+          </div>
+      </mat-accordion>
+      
+      </div>
+      <div>
+          <mat-paginator [length]="length"
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25, 50]"
+          (page) = "handlePageEvent($event)">
+        </mat-paginator>
+    </div>
+  </div>
+</div>

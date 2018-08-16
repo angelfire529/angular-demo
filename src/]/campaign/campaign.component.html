@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+      <mat-expansion-panel *ngFor="let campaign of firstHalf; let i = index" class="bottom">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="panel-title">
+                  <div class="panel-title-content">Name:  {{campaign.name}} </div><span class="panel-title-content-span" (click)="removeCampaign($event, campaign.id)"><i class="fa fa-remove"></i></span>
+                  <p class="panel-title-content-sub">Advertiser: {{campaign.advertiser}}, CPM: {{campaign.cpm}}, End: {{campaign.endDate}}, Start: {{campaign.startDate}}</p>
+                </div>
+              
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <span class="bold margin-bottom">Creatives</span>
+            <div style="height: 300px; overflow: auto">
+              <mat-list-item *ngFor="let creative of creatives  | creativesByCampaign:campaign.id " (click)="goToCreative(creative.id)">
+                {{creative.name}}
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            </div>
+          </mat-list>
+        </mat-expansion-panel>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+      <mat-expansion-panel *ngFor="let campaign of secondHalf; let i = index" class="bottom">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="panel-title">
+                  <div class="panel-title-content">Name:  {{campaign.name}} </div><span class="panel-title-content-span" (click)="removeCampaign($event, campaign.id)"><i class="fa fa-remove"></i></span>
+                  <p class="panel-title-content-sub">Advertiser: {{campaign.advertiser}}, CPM: {{campaign.cpm}}, End: {{campaign.endDate}}, Start: {{campaign.startDate}}</p>
+                </div>
+              
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <span class="bold">Creatives</span>
+            <div style="height: 500px; overflow: auto">
+              <mat-list-item *ngFor="let creative of creatives  | creativesByCampaign:campaign.id " (click)="goToCreative(creative.id)">
+                {{creative.name}}
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            </div>
+          </mat-list>
+        </mat-expansion-panel>
+  </div>
+</div>

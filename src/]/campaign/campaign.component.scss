@@ -1,0 +1,41 @@
+.mat-expansion-panel {
+    margin-bottom: 1rem;
+    min-width: 460px;
+    margin-bottom: 30px;
+  }
+
+  .mat-list-item {
+      &:hover {
+          cursor: pointer;
+      }
+  }
+
+  .panel-title {
+    display: inline-block;
+    width: 100%;
+    min-width: 400px;
+
+    .panel-title-content {
+        display: inline;
+        &-span {
+            float: right;
+            margin-right: 15px;
+            margin-top: 7px;
+            z-index: 99999;
+        }
+        &-sub {
+          font-size: 10px;
+          color: darken(lightgray , 10);
+          font-weight: 500;
+          margin-bottom: 0;
+        }
+    }
+}
+
+.margin-bottom {
+    margin-bottom: 10px;
+}
+
+.bottom {
+    margin-bottom: 30px !important;
+}

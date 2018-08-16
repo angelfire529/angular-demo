@@ -1,0 +1,19 @@
+.form {
+    &--full-page {
+        display: flex;
+        flex-direction: column;
+        
+        & > * {
+            width: 100%;
+            min-width: 500px;
+        }
+    }
+
+    &-container {
+        padding: 5rem;
+    }
+}
+
+.center {
+    margin: auto;
+}
