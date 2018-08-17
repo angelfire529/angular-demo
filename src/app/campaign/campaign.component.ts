@@ -12,8 +12,8 @@ import * as _ from 'lodash';
   styleUrls: ['./campaign.component.scss']
 })
 export class CampaignComponent implements OnInit {
-  private firstHalf: Campaign[];
-  private secondHalf: Campaign[];
+  firstHalf: Campaign[];
+  secondHalf: Campaign[];
   private _filteredArray: Campaign[];
 
   @Input() set filteredArray(campaigns: Campaign[]) {
