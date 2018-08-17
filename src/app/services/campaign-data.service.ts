@@ -10,8 +10,8 @@ import { SharedService } from './shared.service';
   providedIn: 'root'
 })
 export class CampaignDataService {
-  private campaignUrl = 'http://homework.ad-juster.com/api/campaigns';
-  private creativeUrl = 'http://homework.ad-juster.com/api/creatives';
+  private campaignUrl = 'https://jb-demo-rest-api.herokuapp.com/api/campaigns'; // 'http://homework.ad-juster.com/api/campaigns';
+  private creativeUrl = 'https://jb-demo-rest-api.herokuapp.com/api/creatives'; // 'http://homework.ad-juster.com/api/creatives';
 
   constructor(private http: HttpClient, private sharedData: SharedService) { }
   getCampaignsAndCreatives(): Promise<CampaignCreatives> {
